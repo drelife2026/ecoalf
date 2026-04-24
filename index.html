@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pre-Loved · Segunda Vida</title>
+  <meta
+    name="description"
+    content="Descubre la selección pre-loved de ECOALF. Prendas con diseño responsable, materiales reciclados y una segunda vida."
+  />
+  <meta name="theme-color" content="#f3f1ec" />
+
+  <style>
+    :root{
+      --bg:#f3f1ec;
+      --surface:#ffffff;
+      --text:#111111;
+      --muted:rgba(17,17,17,.62);
+      --line:rgba(17,17,17,.14);
+      --eco:#1a1a1a;
+      --sand:#e8e1d4;
+      --stone:#d9d4ca;
+      --soft:#f7f5f0;
+      --max:1720px;
+      --nav-h:46px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    button{
+      font:inherit;
+      border:none;
+      background:none;
+      cursor:pointer;
+      padding:0;
+    }
+
+    img{
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .container{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 12px;
+    }
+
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:100;
+      background:rgba(243,241,236,.94);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(17,17,17,.08);
+    }
+
+    .nav-inner{
+      height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .nav-left,
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      min-width:0;
+    }
+
+    .brand{
+      font-size:16px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .logo{
+      width:70px;
+      height:auto;
+      flex-shrink:0;
+    }
+
+    .nav-links,
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+    }
+
+    .nav-links a:hover,
+    .nav-right a:hover,
+    .nav-right button:hover{
+      color:var(--text);
+    }
+
+    .menu-toggle{
+      display:none;
+      font-size:18px;
+      font-weight:700;
+    }
+
+    .mobile-menu{
+      display:none;
+      border-top:1px solid rgba(17,17,17,.08);
+      padding:14px 10px 16px;
+      background:var(--bg);
+    }
+
+    .mobile-menu.open{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .mobile-menu a,
+    .mobile-menu button{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      text-align:left;
+      color:rgba(17,17,17,.72);
+    }
+
+    main{padding-top:var(--nav-h)}
+
+    .hero{
+      border-bottom:1px solid var(--line);
+      background:var(--bg);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      min-height:calc(100vh - var(--nav-h));
+      border-left:1px solid var(--line);
+      border-right:1px solid var(--line);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-media{
+      min-height:720px;
+      background:#d8d1c6;
+      position:relative;
+    }
+
+    .hero-content{
+      position:relative;
+      background:var(--soft);
+      padding:38px 28px 24px 28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .hero-kicker{
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .hero-title{
+      margin:0;
+      font-size:clamp(64px, 8vw, 146px);
+      line-height:.9;
+      letter-spacing:-0.06em;
+      text-transform:uppercase;
+      max-width:none;
+    }
+
+    .hero-title .line-break{
+      display:block;
+    }
+
+    .hero-subcopy{
+      max-width:420px;
+      margin-top:28px;
+      font-size:13px;
+      line-height:1.45;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.03em;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:26px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 18px;
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      border:1px solid var(--text);
+      transition:all .25s ease;
+    }
+
+    .btn:hover{
+      background:var(--text);
+      color:var(--bg);
+    }
+
+    .btn-light{
+      border-color:var(--line);
+      background:transparent;
+    }
+
+    .hero-footer{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:24px;
+      padding-top:28px;
+    }
+
+    .hero-note{
+      max-width:220px;
+      font-size:10px;
+      line-height:1.4;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+    }
+
+    .hero-index{
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .story{
+      border-bottom:1px solid var(--line);
+      background:var(--bg);
+    }
+
+    .story-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      border-left:1px solid var(--line);
+      border-right:1px solid var(--line);
+    }
+
+    .story-copy,
+    .story-media{
+      min-height:760px;
+    }
+
+    .story-copy{
+      padding:32px 28px 26px;
+      background:var(--bg);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      border-right:1px solid var(--line);
+    }
+
+    .story-topline{
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .story-title{
+      margin:0;
+      font-size:clamp(48px, 6vw, 108px);
+      line-height:.9;
+      letter-spacing:-0.07em;
+      text-transform:uppercase;
+      max-width:10ch;
+    }
+
+    .story-text{
+      max-width:520px;
+      margin-top:24px;
+      font-size:14px;
+      line-height:1.6;
+      color:rgba(17,17,17,.72);
+    }
+
+    .story-points{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:1px;
+      background:var(--line);
+      margin-top:32px;
+      border:1px solid var(--line);
+    }
+
+    .story-point{
+      background:var(--bg);
+      padding:18px 16px;
+      min-height:112px;
+    }
+
+    .story-point strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .story-point span{
+      display:block;
+      font-size:12px;
+      line-height:1.45;
+      color:var(--muted);
+      text-transform:uppercase;
+    }
+
+    .story-media{
+      background:#d8d2c8;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .story-overlay{
+      position:absolute;
+      left:20px;
+      right:20px;
+      bottom:20px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-end;
+      z-index:2;
+      color:#fff;
+      text-transform:uppercase;
+    }
+
+    .story-overlay span{
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.12em;
+    }
+
+    .story-media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.28), rgba(0,0,0,0) 40%);
+      z-index:1;
+    }
+
+    .products{
+      border-bottom:1px solid var(--line);
+      background:var(--bg);
+    }
+
+    .section-head{
+      padding:10px 0;
+      border-bottom:1px solid var(--line);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .products-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:28px;
+      padding:28px 0 34px;
+    }
+
+    .product-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(247,245,240,.96));
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+      min-height:100%;
+      border:1px solid rgba(17,17,17,.08);
+      border-radius:34px;
+      overflow:hidden;
+      box-shadow:0 18px 45px rgba(17,17,17,.08);
+      transition:transform .35s ease, box-shadow .35s ease;
+    }
+
+    .product-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 26px 60px rgba(17,17,17,.12);
+    }
+
+    .product-image,
+    .editorial-media{
+      width:100%;
+      aspect-ratio:1 / 1.1;
+      overflow:hidden;
+      background:#ddd;
+    }
+
+    .product-image img,
+    .editorial-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .8s ease;
+    }
+
+    .product-card:hover .product-image img,
+    .editorial-card:hover .editorial-media img{
+      transform:scale(1.02);
+    }
+
+    .product-info,
+    .product-action{
+      padding:22px 34px;
+    }
+
+    .product-info{
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:flex-start;
+      gap:14px;
+    }
+
+    .product-title{
+      margin:0;
+      font-size:clamp(30px, 3.2vw, 48px);
+      line-height:.95;
+      letter-spacing:-0.07em;
+      text-transform:uppercase;
+      max-width:12ch;
+    }
+
+    .product-meta{
+      margin:0;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(15,15,15,.58);
+    }
+
+    .product-price{
+      margin:0;
+      max-width:26ch;
+      font-size:15px;
+      line-height:1.55;
+      color:rgba(17,17,17,.58);
+    }
+
+    .product-action a{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      padding-top:6px;
+    }
+
+    .editorial{
+      border-bottom:1px solid var(--line);
+      background:var(--bg);
+    }
+
+    .editorial-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:1px;
+      background:var(--line);
+    }
+
+    .editorial-card{
+      background:var(--bg);
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+    }
+
+    .editorial-copy,
+    .editorial-action{
+      border-top:1px solid var(--line);
+      padding:12px 14px;
+    }
+
+    .editorial-copy{
+      min-height:82px;
+      font-size:11px;
+      line-height:1.3;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+
+    .editorial-action a{
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    .campaign-footer{
+      background:var(--bg);
+      padding:110px 0 90px;
+      text-align:center;
+    }
+
+    .campaign-footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    .campaign-footer-kicker{
+      margin:0 0 24px;
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .campaign-footer-title{
+      margin:0;
+      font-size:clamp(52px, 10vw, 150px);
+      line-height:.88;
+      letter-spacing:-0.08em;
+      text-transform:uppercase;
+    }
+
+    .campaign-footer-subtitle{
+      max-width:560px;
+      margin:28px auto 0;
+      font-size:13px;
+      line-height:1.5;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .campaign-footer-actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:34px;
+    }
+
+    .campaign-footer-meta{
+      margin-top:42px;
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 1100px){
+      .hero-grid,
+      .story-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-media,
+      .story-media,
+      .story-copy{
+        min-height:auto;
+      }
+
+      .hero-media{
+        min-height:520px;
+      }
+
+      .story-media{
+        min-height:520px;
+      }
+
+      .story-copy{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 900px){
+      .nav-links,.nav-right{display:none}
+      .menu-toggle{display:block}
+      .products-grid,
+      .editorial-grid{grid-template-columns:1fr}
+
+      .hero-title{
+        font-size:16vw;
+        line-height:.92;
+        letter-spacing:-0.05em;
+        max-width:none;
+        word-break:normal;
+        overflow-wrap:normal;
+        hyphens:none;
+      }
+
+      .story-title{
+        font-size:15vw;
+      }
+    }
+
+    @media (max-width: 640px){
+      .container{padding:0 8px}
+
+      .hero-content,
+      .story-copy{
+        padding:22px 16px 18px;
+      }
+
+      .hero-media,
+      .story-media{
+        min-height:420px;
+      }
+
+      .hero-title{
+        font-size:15vw;
+        line-height:.94;
+        letter-spacing:-0.04em;
+      }
+
+      .hero-footer{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .story-points{
+        grid-template-columns:1fr;
+      }
+
+      .product-title{
+        max-width:none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="nav-left">
+        <img class="logo" src="HOME/Imagenes/logo-ecoalf.png" alt="ECOALF logo" />
+        <div class="nav-links">
+          <a href="#catalogo">Catalogo</a>
+          <a href="#segunda-vida">Segunda vida</a>
+          <a href="#novedades">Novedades</a>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <button>Buscar</button>
+        <button>Favoritos</button>
+        <button>Cuenta</button>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+
+    <div class="mobile-menu container" id="mobileMenu">
+      <a href="#catalogo">Catalogo</a>
+      <a href="#segunda-vida">Segunda vida</a>
+      <a href="#novedades">Novedades</a>
+      <button>Buscar</button>
+      <button>Favoritos</button>
+      <button>Cuenta</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="segunda-vida">
+      <div class="container">
+        <div class="hero-grid reveal">
+          <div class="hero-media">
+            <img src="HOME/Imagenes/sec1.webp" alt="Prenda de segunda vida en clave editorial" />
+          </div>
+
+          <div class="hero-content">
+            <div>
+              <div class="hero-kicker">ECOALF / Pre-loved selection</div>
+
+              <h1 class="hero-title">
+                SECOND-HAND
+                <span class="line-break">COLLECTION.</span>
+                <span class="line-break">NOT NEW.</span>
+                <span class="line-break">STILL ECOALF.</span>
+              </h1>
+
+              <p class="hero-subcopy">
+                Una seleccion de prendas ECOALF con una nueva oportunidad.
+                Diseno responsable, materiales reciclados y piezas preparadas para seguir en circulacion.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#catalogo" class="btn">Ver seleccion</a>
+                <a href="PROCESO/venderecoalf_v2.html" class="btn btn-light">Vender productos</a>
+              </div>
+            </div>
+
+            <div class="hero-footer">
+              <p class="hero-note">
+                Circularidad real. Menos impacto. Mas tiempo de uso para cada prenda.
+              </p>
+              <div class="hero-index">Edition 01</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story">
+      <div class="container">
+        <div class="story-grid reveal">
+          <div class="story-copy">
+            <div>
+              <div class="story-topline">Segunda vida / misma actitud</div>
+
+              <h2 class="story-title">
+                Disenadas para durar. Preparadas para volver.
+              </h2>
+
+              <p class="story-text">
+                Esta seleccion reune prendas ECOALF pensadas desde el origen para
+                reducir el impacto ambiental y prolongar su ciclo de uso. Cada pieza
+                vuelve revisada, cuidada y lista para formar parte de un armario mas
+                consciente.
+              </p>
+
+              <div class="story-points">
+                <div class="story-point">
+                  <strong>Materiales responsables</strong>
+                  <span>Prendas creadas con fibras recicladas y una vision de bajo impacto.</span>
+                </div>
+                <div class="story-point">
+                  <strong>Seleccion curada</strong>
+                  <span>Estado revisado, calidad validada y estetica alineada con la marca.</span>
+                </div>
+                <div class="story-point">
+                  <strong>Mas tiempo de uso</strong>
+                  <span>Extender la vida util de una prenda tambien es diseno responsable.</span>
+                </div>
+                <div class="story-point">
+                  <strong>Compra circular</strong>
+                  <span>Una manera mas inteligente de consumir sin renunciar al estilo.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#catalogo" class="btn">Comprar pre-loved</a>
+            </div>
+          </div>
+
+          <div class="story-media">
+            <img
+              src="HOME/Imagenes/sec2.webp"
+              alt="Editorial de moda sostenible"
+            />
+            <div class="story-overlay">
+              <span>Curated circular edit</span>
+              <span>Ecoalf second life</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="catalogo">
+      <div class="container">
+        <div class="section-head">Catalogo Second Life</div>
+        <div class="products-grid" id="novedades">
+          <a class="product-card reveal" href="#footer-circular" aria-label="Ver producto Abrigo Aspen">
+            <div class="product-image">
+              <img src="HOME/Imagenes/sec2.webp" alt="Abrigo beige de segunda mano ECOALF" />
+            </div>
+            <div class="product-info">
+              <p class="product-meta">Outerwear</p>
+              <h3 class="product-title">Abrigo Aspen</h3>
+              <p class="product-price">Second Life selection · lana reciclada · excelente estado · 129 EUR</p>
+            </div>
+            <div class="product-action">
+              <span>Ver producto</span>
+            </div>
+          </a>
+
+          <a class="product-card reveal" href="#footer-circular" aria-label="Ver producto Chaqueta Oslo">
+            <div class="product-image">
+              <img src="HOME/Imagenes/sec1.webp" alt="Chaqueta tecnica gris de segunda mano ECOALF" />
+            </div>
+            <div class="product-info">
+              <p class="product-meta">Jackets</p>
+              <h3 class="product-title">Chaqueta Oslo</h3>
+              <p class="product-price">Tejido tecnico reciclado · ligera y resistente · muy buen estado · 89 EUR</p>
+            </div>
+            <div class="product-action">
+              <span>Ver producto</span>
+            </div>
+          </a>
+
+          <a class="product-card reveal" href="#footer-circular" aria-label="Ver producto Sudadera Pacific">
+            <div class="product-image">
+              <img src="APP/imagenes/imagen1.webp" alt="Sudadera blanca de segunda mano ECOALF" />
+            </div>
+            <div class="product-info">
+              <p class="product-meta">Sweatshirts</p>
+              <h3 class="product-title">Sudadera Pacific</h3>
+              <p class="product-price">Algodon reciclado · fit relajado · pequenas senales de uso · 54 EUR</p>
+            </div>
+            <div class="product-action">
+              <span>Ver producto</span>
+            </div>
+          </a>
+
+          <a class="product-card reveal" href="#footer-circular" aria-label="Ver producto Mochila River">
+            <div class="product-image">
+              <img src="APP/imagenes/imagen2.webp" alt="Mochila urbana de segunda mano ECOALF" />
+            </div>
+            <div class="product-info">
+              <p class="product-meta">Accessories</p>
+              <h3 class="product-title">Mochila River</h3>
+              <p class="product-price">Nylon reciclado · formato diario · interior amplio · 65 EUR</p>
+            </div>
+            <div class="product-action">
+              <span>Ver producto</span>
+            </div>
+          </a>
+
+          <a class="product-card reveal" href="#footer-circular" aria-label="Ver producto Jersey North">
+            <div class="product-image">
+              <img src="APP/imagenes/imagen3.webp" alt="Jersey de punto azul de segunda mano ECOALF" />
+            </div>
+            <div class="product-info">
+              <p class="product-meta">Knitwear</p>
+              <h3 class="product-title">Jersey North</h3>
+              <p class="product-price">Punto suave reciclado · tono azul marino · muy buen estado · 72 EUR</p>
+            </div>
+            <div class="product-action">
+              <span>Ver producto</span>
+            </div>
+          </a>
+
+          <a class="product-card reveal" href="#footer-circular" aria-label="Ver producto Tote Ocean">
+            <div class="product-image">
+              <img src="PROCESO/imagenes/vender2.webp" alt="Bolso tote de segunda mano ECOALF" />
+            </div>
+            <div class="product-info">
+              <p class="product-meta">Bags</p>
+              <h3 class="product-title">Tote Ocean</h3>
+              <p class="product-price">Lona reciclada · edicion urbana · lista para una nueva vida · 48 EUR</p>
+            </div>
+            <div class="product-action">
+              <span>Ver producto</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="campaign-footer" id="footer-circular">
+      <div class="campaign-footer-inner reveal">
+        <p class="campaign-footer-kicker">ECOALF / Resale platform</p>
+
+        <h2 class="campaign-footer-title">
+          GIVE IT
+          <br />
+          ANOTHER
+          <br />
+          LIFE.
+        </h2>
+
+        <p class="campaign-footer-subtitle">
+          Compra mejor. Vende mejor. Manten tus prendas ECOALF en circulacion y
+          amplia su vida util con una experiencia simple, cuidada y responsable.
+        </p>
+
+        <div class="campaign-footer-actions">
+          <a href="PROCESO/venderecoalf_v2.html" class="btn">Vende tu articulo</a>
+          <a href="#catalogo" class="btn btn-light">Explorar catalogo</a>
+        </div>
+
+        <div class="campaign-footer-meta">
+          Circularity / Pre-loved / Designed to last
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', function () {
+        mobileMenu.classList.toggle('open');
+        menuToggle.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
+      });
+    }
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
